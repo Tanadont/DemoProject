@@ -14,9 +14,9 @@ namespace DemoProject.Controllers
             this.masProjectService = masProjectService;
         }
         [HttpGet("")]
-        public IActionResult GetAll(int limit)
+        public IActionResult GetAll(Query query)
         {
-            return Ok(this.masProjectService.GetAll(limit));
+            return Ok(this.masProjectService.GetAll(query));
         }
     }
 }

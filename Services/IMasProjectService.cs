@@ -4,6 +4,6 @@ namespace DemoProject.Services
 {
     public interface IMasProjectService
     {
-        ApiResponse GetAll(int limit);
+        ApiResponse GetAll(Query query);
     }
 }
