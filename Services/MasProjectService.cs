@@ -24,7 +24,7 @@ namespace DemoProject.Services
 
             if (query.TextSearch != null && query.TextSearch.Trim().Length > 0)
             {
-                stringBuilder.AppendFormat("AND mp.project_name_en LIKE '%{0}%' ", query.TextSearch);
+                stringBuilder.AppendFormat("AND (mp.project_name_en LIKE '%{0}%' OR mp.project_name_th LIKE N'%{0}%') ", query.TextSearch);
             }
 
                 var totalRecords = this.db.MasProject.FromSqlRaw(stringBuilder.ToString()).Count();
