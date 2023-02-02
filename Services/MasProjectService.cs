@@ -43,6 +43,8 @@ namespace DemoProject.Services
                         re.ProjectCode = mp.ProjectCode;
                         re.ProjectNameTh = mp.ProjectNameTh;
                         re.ProjectNameEn = mp.ProjectNameEn;
+                        re.UnitNo = mp.UnitNo;
+                        re.HouseNo= mp.HouseNo;
                         responseModels.Add(re);
                         rowNo++;
                     }

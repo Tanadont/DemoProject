@@ -7,5 +7,7 @@
         public string ProjectCode { get; set; } = "";
         public string ProjectNameTh { get; set; } = "";
         public string ProjectNameEn { get; set; } = "";
+        public string UnitNo { get; set; } = "";
+        public string HouseNo { get; set; } = "";
     }
 }
