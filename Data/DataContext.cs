@@ -334,7 +334,10 @@ namespace DemoProject.Data
                     .HasColumnType("decimal(5, 2)")
                     .HasColumnName("water_unit_avg");
             });
+            modelBuilder.Entity<FindMasProjectUnit>(entity => entity.HasNoKey());
         }
         public DbSet<MasProjectModel> MasProject { get; set; }
+
+        public DbSet<FindMasProjectUnit> FindMasProjectUnit { get; set; }
     }
 }

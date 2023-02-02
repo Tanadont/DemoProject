@@ -19,8 +19,10 @@ namespace DemoProject.Services
         {
             ApiResponse response = new ApiResponse();
             List<ResponseModel> responseModels = new List<ResponseModel>();
+            
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append("SELECT * FROM dbo.mas_project AS mp WHERE 1 = 1 ");
+            stringBuilder.Append("SELECT mp.project_id as ProjectId, mp.project_code as ProjectCode, mp.project_name_th as ProjectNameTh, mp.project_name_en as ProjectNameEn, mu.unit_no as UnitNo, mu.house_no as HouseNo" +
+            " FROM dbo.mas_project AS mp JOIN mas_unit mu ON mp.project_id = mu.mpj_project_id WHERE 1 = 1 ");
 
             if (query.TextSearch != null && query.TextSearch.Trim().Length > 0)
             {
@@ -30,9 +32,10 @@ namespace DemoProject.Services
                 var totalRecords = this.db.MasProject.FromSqlRaw(stringBuilder.ToString()).Count();
                 if (totalRecords > 0)
                 {
-                    var res = this.db.MasProject.FromSqlRaw(stringBuilder.ToString()).Skip(query.Skip * query.Limit).Take(query.Limit).ToList();
+                //select เฉพาะ colum ที่ต้องการ ต้องระบู HasNoKey ใน Data Context MasProject=> FindMasProjectUnit
+                var res = this.db.FindMasProjectUnit.FromSqlRaw(stringBuilder.ToString()).Skip(query.Skip * query.Limit).Take(query.Limit).ToList();
                     int rowNo = (query.Skip * query.Limit) + 1;
-                    foreach (MasProjectModel mp in res)
+                    foreach (FindMasProjectUnit mp in res)
                     {
                         ResponseModel re = new ResponseModel();
                         re.RowNo = rowNo;
