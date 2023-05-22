@@ -1,0 +1,723 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API K2",
+    "version": "v1"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "HealthCheck"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/sabuy-k2/api/contract": {
+      "post": {
+        "tags": [
+          "K2"
+        ],
+        "parameters": [
+          {
+            "name": "productType",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractRequestModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractRequestModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContractRequestModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "K2"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateContractRequestModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateContractRequestModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateContractRequestModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/sabuy-k2/api/contract/status": {
+      "patch": {
+        "tags": [
+          "K2"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusRequestModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusRequestModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StatusRequestModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/sabuy-k2/api/contract/status-send": {
+      "patch": {
+        "tags": [
+          "K2"
+        ],
+        "parameters": [
+          {
+            "name": "contractId",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/sabuy-k2/api/otp": {
+      "post": {
+        "tags": [
+          "K2"
+        ],
+        "parameters": [
+          {
+            "name": "documentNo",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "K2"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OtpRequestModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OtpRequestModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OtpRequestModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Address": {
+        "type": "object",
+        "properties": {
+          "addressType": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "moo": {
+            "type": "string",
+            "nullable": true
+          },
+          "soi": {
+            "type": "string",
+            "nullable": true
+          },
+          "building": {
+            "type": "string",
+            "nullable": true
+          },
+          "floorNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "roomNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "road": {
+            "type": "string",
+            "nullable": true
+          },
+          "postcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "latitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "subDistrictCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "subDistrictNameTh": {
+            "type": "string",
+            "nullable": true
+          },
+          "districtCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "districtNameTh": {
+            "type": "string",
+            "nullable": true
+          },
+          "provinceCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "provinceNameTh": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AttachFile": {
+        "type": "object",
+        "properties": {
+          "linkNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "linkName": {
+            "type": "string",
+            "nullable": true
+          },
+          "filetype": {
+            "type": "string",
+            "nullable": true
+          },
+          "filedata": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ContractRequestModel": {
+        "type": "object",
+        "properties": {
+          "documentNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "salespersonFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "salespersonLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "salespersonPrefix": {
+            "type": "string",
+            "nullable": true
+          },
+          "salespersonCitizenId": {
+            "type": "string",
+            "nullable": true
+          },
+          "salespersonCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "salespersonMobile": {
+            "type": "string",
+            "nullable": true
+          },
+          "salespersonBranch": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerType": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerCitizen": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerPrefix": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerDateOfBirth": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "customerPrimaryPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerSecondaryPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalUnit": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalAmountIncludeVat": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "creditAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "downPayment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "transferAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "salePaymentStartDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "salePaymentDueDate": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "salePaymentEndDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentType": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Address"
+            },
+            "nullable": true
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Location"
+            },
+            "nullable": true
+          },
+          "numberOfUnits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NumberOfUnit"
+            },
+            "nullable": true
+          },
+          "paymentPeriods": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentPeriod"
+            },
+            "nullable": true
+          },
+          "attachFiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttachFile"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "mapImageBase64": {
+            "type": "string",
+            "nullable": true
+          },
+          "latitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NumberOfUnit": {
+        "type": "object",
+        "properties": {
+          "deviceNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "productGroup": {
+            "type": "string",
+            "nullable": true
+          },
+          "serialNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "pricingIncludeVat": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OtpRequestModel": {
+        "required": [
+          "documentNo",
+          "otpValue",
+          "pacCode"
+        ],
+        "type": "object",
+        "properties": {
+          "documentNo": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "pacCode": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "otpValue": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PaymentPeriod": {
+        "type": "object",
+        "properties": {
+          "period": {
+            "type": "string",
+            "nullable": true
+          },
+          "amount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StatusRequestModel": {
+        "type": "object",
+        "properties": {
+          "documentNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "contractId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "documentStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedBy": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateContractRequestModel": {
+        "type": "object",
+        "properties": {
+          "documentNo": {
+            "type": "string",
+            "nullable": true
+          },
+          "salespersonFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "salespersonLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "salespersonPrefix": {
+            "type": "string",
+            "nullable": true
+          },
+          "salespersonCitizenId": {
+            "type": "string",
+            "nullable": true
+          },
+          "salespersonCode": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "salespersonMobile": {
+            "type": "string",
+            "nullable": true
+          },
+          "salespersonBranch": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerType": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerCitizen": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerPrefix": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerDateOfBirth": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "customerPrimaryPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerSecondaryPhone": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalUnit": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalAmountIncludeVat": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "creditAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "downPayment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "transferAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "salePaymentStartDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "salePaymentDueDate": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "salePaymentEndDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "paymentType": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Address"
+            },
+            "nullable": true
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Location"
+            },
+            "nullable": true
+          },
+          "numberOfUnits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NumberOfUnit"
+            },
+            "nullable": true
+          },
+          "paymentPeriods": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentPeriod"
+            },
+            "nullable": true
+          },
+          "attachFiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttachFile"
+            },
+            "nullable": true
+          },
+          "contractId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "basic": {
+        "type": "http",
+        "description": "Basic Authorization",
+        "scheme": "basic"
+      }
+    }
+  },
+  "security": [
+    {
+      "basic": [ ]
+    }
+  ]
+}
