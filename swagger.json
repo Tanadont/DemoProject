@@ -169,25 +169,35 @@
         "tags": [
           "K2"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/OtpRequestModel"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/OtpRequestModel"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/OtpRequestModel"
-              }
+        "parameters": [
+          {
+            "name": "documentNo",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pacCode",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "otpValue",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "Success"
@@ -318,8 +328,7 @@
             "nullable": true
           },
           "salespersonCode": {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "nullable": true
           },
           "salespersonMobile": {
@@ -485,29 +494,6 @@
         },
         "additionalProperties": false
       },
-      "OtpRequestModel": {
-        "required": [
-          "documentNo",
-          "otpValue",
-          "pacCode"
-        ],
-        "type": "object",
-        "properties": {
-          "documentNo": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "pacCode": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "otpValue": {
-            "minLength": 1,
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
       "PaymentPeriod": {
         "type": "object",
         "properties": {
@@ -575,8 +561,7 @@
             "nullable": true
           },
           "salespersonCode": {
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "nullable": true
           },
           "salespersonMobile": {
